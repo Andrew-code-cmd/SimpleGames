@@ -13,11 +13,18 @@ public class PlayerController : MonoBehaviour
         forwardInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput); // движетс€ пр€мо по дефолту
+        
+        if(forwardInput > 0)
+        {
+            transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime); // поворот в стороны
+        }
+        else if(forwardInput < 0)
+        {
+            transform.Rotate(-Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
+        }
 
-        // поворот в стороны (old)
-        // transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
-
-        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime); // поворот в стороны
+            // поворот в стороны (old)
+            // transform.Translate(Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
 
     }
 }
